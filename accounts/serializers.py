@@ -1,5 +1,6 @@
 from dj_rest_auth.registration.serializers import RegisterSerializer
 from rest_framework import serializers
+from .models import CustomUser
 
 class CustomRegisterSerializer(RegisterSerializer):
     first_name = serializers.CharField(required=False)
@@ -26,3 +27,20 @@ class CustomRegisterSerializer(RegisterSerializer):
 
         user.save()
         return user
+    
+
+
+
+class CustomUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = [
+            'id',
+            'email',
+            'first_name',
+            'last_name',
+            'username',
+            'bio',
+            'profile_image_url',
+            'date_joined',
+        ]

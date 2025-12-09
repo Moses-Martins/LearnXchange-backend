@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     # Local
     'accounts.apps.AccountsConfig',
     'posts.apps.PostsConfig',
+    'common.apps.CommonConfig',
 ]
 
 REST_FRAMEWORK = {
@@ -67,6 +68,12 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [ 
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
+    "DEFAULT_RENDERER_CLASSES": (
+        "common.renderers.APIResponseRenderer",
+    ),
+
+    "EXCEPTION_HANDLER": "common.exceptions.custom_exception_handler",
+
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 
@@ -175,11 +182,12 @@ SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(hours=1),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
 }
-
+ 
 # dj-rest-auth
 REST_AUTH = {
     "USE_JWT": True,
     "JWT_AUTH_HTTPONLY": False,  # Makes sure refresh token is sent
+    'USER_DETAILS_SERIALIZER': 'accounts.serializers.CustomUserSerializer',
     "REGISTER_SERIALIZER": "accounts.serializers.CustomRegisterSerializer",
 }
 
