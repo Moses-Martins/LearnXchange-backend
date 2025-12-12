@@ -15,3 +15,6 @@ RUN pip install -r requirements.txt
 
 # Copy project
 COPY . .
+
+# Run Gunicorn
+CMD ["gunicorn", "django_project.wsgi:application", "-b", "0.0.0.0:8000"]
