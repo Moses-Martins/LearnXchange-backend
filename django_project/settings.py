@@ -67,7 +67,7 @@ REST_FRAMEWORK = {
         "rest_framework.permissions.IsAuthenticated",
     ],
     "DEFAULT_AUTHENTICATION_CLASSES": [ 
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
     ],
     "DEFAULT_RENDERER_CLASSES": (
         "common.renderers.APIResponseRenderer",
@@ -97,7 +97,12 @@ CORS_ORIGIN_WHITELIST = (
     "https://learnxchange.netlify.app",
 )
 
-CSRF_TRUSTED_ORIGINS = ["http://localhost:3000"]
+CORS_ALLOW_CREDENTIALS = True
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:3000",
+    "https://learnxchange.netlify.app",
+]
 
 ROOT_URLCONF = 'django_project.urls'
 
