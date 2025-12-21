@@ -206,9 +206,14 @@ CSRF_COOKIE_HTTPONLY = False
 # dj-rest-auth
 REST_AUTH = {
     "USE_JWT": True,
+
     "JWT_AUTH_COOKIE": "_auth", 
     "JWT_AUTH_REFRESH_COOKIE": "_refresh", 
+
     "JWT_AUTH_HTTPONLY": True,  # Makes sure refresh token is sent
+    "JWT_AUTH_SAMESITE": "None", 
+    "JWT_AUTH_SECURE": True,     
+
     'USER_DETAILS_SERIALIZER': 'accounts.serializers.CustomUserSerializer',
     "REGISTER_SERIALIZER": "accounts.serializers.CustomRegisterSerializer",
 }
